@@ -7,7 +7,7 @@ class Farmer{
   float farmerspeed;
   
   Farmer(){
-    farmerspeed =1;
+    farmerspeed =1.5;
     FarmerLoc = new PVector (width/2, height/2);
     farmerStand = new PImage[4];
     //loop through the standing poses
@@ -53,15 +53,15 @@ class Farmer{
   } 
   void checkEdges(){
      //constrain farmer within the canvas 
-     if (FarmerLoc.x>=width){
-       FarmerLoc.x= width;
-     }else if (FarmerLoc.x <=0){
-       FarmerLoc.x=0;
+     if (FarmerLoc.x>=width-20){
+       FarmerLoc.x= width-20;
+     }else if (FarmerLoc.x <=20){
+       FarmerLoc.x=20;
      }
-     if (FarmerLoc.y>=height){
-       FarmerLoc.y= height;
-     }else if (FarmerLoc.y <=0){
-       FarmerLoc.y=0;
+     if (FarmerLoc.y>=height-25){
+       FarmerLoc.y= height-25;
+     }else if (FarmerLoc.y <=25){
+       FarmerLoc.y=25;
      }
   }
 }
