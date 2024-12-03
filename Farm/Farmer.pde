@@ -4,8 +4,10 @@ class Farmer{
   PImage farmerWalk[];
   int farmerStandFrame;
   int farmerWalkFrame;
+  float farmerspeed;
   
   Farmer(){
+    farmerspeed =1;
     FarmerLoc = new PVector (width/2, height/2);
     farmerStand = new PImage[4];
     //loop through the standing poses
@@ -25,7 +27,7 @@ class Farmer{
     if (frameCount%10 ==0){
       farmerStandFrame = (farmerStandFrame+1)% farmerStand.length;
     }
-    if (frameCount%7 ==0){
+    if (frameCount%5 ==0){
       farmerWalkFrame = (farmerWalkFrame+1)% farmerWalk.length;
     }
     if( isWalking ==true){
@@ -35,8 +37,20 @@ class Farmer{
     }
     popMatrix();
   }
-  //void movment(){
-  //}
+  void movement(){
+    if (goUp){
+      FarmerLoc.y -=farmerspeed;
+    }
+    if (goDown){
+      FarmerLoc.y +=farmerspeed;
+    }
+    if(goLeft){
+      FarmerLoc.x -=farmerspeed;
+    }
+    if(goRight){
+      FarmerLoc.x +=farmerspeed;
+    }
+  } 
   void checkEdges(){
      //constrain farmer within the canvas 
      if (FarmerLoc.x>=width){

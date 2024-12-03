@@ -17,20 +17,36 @@ void setup(){
 void draw(){
   background(255);
   farmer.display();
-  //farmer.movement();
+  farmer.movement();
   farmer.checkEdges();
 }
 
 void keyPressed(){
-  isWalking =true;
-  if(key=='d'){
+  isWalking=true;
+  if (key=='w'){
+    goUp=true;
     dir=1;
-  }
-  if(key=='a'){
+  }else if (key=='s'){
+    goDown=true;
     dir=-1;
+  }else if (key=='a'){
+    goLeft=true;
+    dir=-1;
+  }else if (key=='d'){
+    goRight=true;
+    dir=1;
   }
 }
 
 void keyReleased(){
-  isWalking= false;
+  isWalking=false;
+  if (key=='w'){
+    goUp=false;
+  }else if (key=='s'){
+    goDown=false;
+  }else if (key=='a'){
+    goLeft=false;
+  }else if (key=='d'){
+    goRight=false;
+  }
 }
