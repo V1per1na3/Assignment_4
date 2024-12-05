@@ -1,4 +1,5 @@
 Farmer farmer;
+Wave wave;
 Platform1[] platform1= new Platform1[2];
 Platform2[] platform2= new Platform2[3];
 Platform3[] platform3= new Platform3[2];
@@ -19,6 +20,7 @@ void setup(){
   imageMode(CENTER);
   rectMode(CENTER);
   isHolding=false;
+  wave= new Wave();
   farmer= new Farmer();
   goUp=false;
   goLeft=false;
@@ -59,7 +61,10 @@ void draw(){
   for (int i=0;i< platform3.length; i++){
     platform3[i].display();//show platform
     platform3[i].collision(farmer);//collision with farmer
-  } 
+  }
+  //put in the end so wave covers everything 
+  wave.display();
+  wave.movement();
   //println(farmer.FarmerLoc.y);//debug purposes
   //println(farmer.left);
 }
