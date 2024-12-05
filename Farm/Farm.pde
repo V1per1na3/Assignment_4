@@ -1,4 +1,5 @@
 Farmer farmer;
+Platform1[] platform1= new Platform1[2];
 boolean isWalking;
 boolean isJumping;
 boolean goUp;
@@ -12,7 +13,7 @@ float holdMaxTime;
 int dir =1;
 
 void setup(){
-  size(750,500);
+  size(400,550);
   imageMode(CENTER);
   isHolding=false;
   farmer= new Farmer();
@@ -23,13 +24,22 @@ void setup(){
   holdStart=0;
   holdTimer=0;//store hold space time
   holdMaxTime=2000;//max time to hold space bar in ms
+  //initialize platform1
+  for (int i=0;i< platform1.length; i++){
+    platform1[i] = new Platform1();
+  }    
 }
+
 void draw(){
   background(255);
   farmer.display();
   farmer.Timer();
   farmer.movement();
   farmer.checkEdges();
+  for (int i=0;i< platform1.length; i++){
+    platform1[i].display();
+  } 
+  println(farmer.FarmerLoc.y);
 }
 
 void keyPressed(){

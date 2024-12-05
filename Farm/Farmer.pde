@@ -13,9 +13,9 @@ class Farmer{
   float maxAcc;
   
   Farmer(){
-    maxAcc=-20;//max acc
+    maxAcc=-12;//max acc
     farmerspeed =1.5;//moving speed
-    FarmerLoc = new PVector (width/2, height-100);//initial location
+    FarmerLoc = new PVector (width/2, height-50);//initial location
     FarmerVelo= new PVector (0,0);
     Farmergrav = new PVector (0,0.5);//downward force in y axis
     FarmerAcc= new PVector (0,-5);//upward force in y axis
@@ -65,9 +65,9 @@ class Farmer{
     }
     FarmerLoc.add(FarmerVelo);//update location by adding velo back to position
     //check if farmer is landed, stop the downward force
-    if(FarmerLoc.y >=height-100){
+    if(FarmerLoc.y >=height-50){
       Landed=true;
-      FarmerLoc.y= height-100;
+      FarmerLoc.y= height-50;
       FarmerVelo.y=0;
     }
     if(goLeft){
