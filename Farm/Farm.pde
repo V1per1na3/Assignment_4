@@ -18,7 +18,6 @@ void setup(){
   rectMode(CENTER);
   isHolding=false;
   farmer= new Farmer();
-  Landed=true;
   goUp=false;
   goLeft=false;
   goRight=false;
@@ -33,6 +32,7 @@ void setup(){
 
 void draw(){
   background(255);
+  Landed=false;
   farmer.display();
   farmer.Timer();
   farmer.movement();

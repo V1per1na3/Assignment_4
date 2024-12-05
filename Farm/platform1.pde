@@ -9,8 +9,8 @@ class Platform1{
   float bottom;
   
   Platform1(){
-    Platform1Loc= new PVector (random(50,350),random(400,500));
-    w=100;
+    Platform1Loc= new PVector (random(50,350),random(380,450));
+    w=110;
     h=20;
     //calculate the hitbox 
     left=Platform1Loc.x-w/2;
