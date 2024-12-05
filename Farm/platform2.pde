@@ -9,7 +9,7 @@ class Platform2{
   float bottom;
   
   Platform2(){
-    Platform2Loc= new PVector (random(100,300),random(210,320));
+    Platform2Loc= new PVector (random(100,300),random(210,360));
     w=70;
     h=20;
     //calculate the hitbox 
