@@ -15,6 +15,7 @@ int dir =1;
 void setup(){
   size(400,550);
   imageMode(CENTER);
+  rectMode(CENTER);
   isHolding=false;
   farmer= new Farmer();
   Landed=true;

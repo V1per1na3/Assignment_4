@@ -11,8 +11,8 @@ class Farmer{
   int farmerWalkFrame;
   float farmerspeed;
   float maxAcc;
-  float w=72;//the size of character image
-  float h=48;
+  float w=28;//the size of character image
+  float h=44;
   float left;//hitbox value
   float right;
   float top;
