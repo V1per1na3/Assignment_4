@@ -15,7 +15,7 @@ class Farmer{
   Farmer(){
     maxAcc=-20;//max acc
     farmerspeed =1.5;//moving speed
-    FarmerLoc = new PVector (width/2, height/2);//initial location
+    FarmerLoc = new PVector (width/2, height-100);//initial location
     FarmerVelo= new PVector (0,0);
     Farmergrav = new PVector (0,0.5);//downward force in y axis
     FarmerAcc= new PVector (0,-5);//upward force in y axis
@@ -65,9 +65,9 @@ class Farmer{
     }
     FarmerLoc.add(FarmerVelo);//update location by adding velo back to position
     //check if farmer is landed, stop the downward force
-    if(FarmerLoc.y >=height/2){
+    if(FarmerLoc.y >=height-100){
       Landed=true;
-      FarmerLoc.y= height/2;
+      FarmerLoc.y= height-100;
       FarmerVelo.y=0;
     }
     if(goLeft){
@@ -82,8 +82,11 @@ class Farmer{
     if(isHolding){
       //calculate holding duration by - holdtime to current time
       holdTimer=millis()-holdStart;
-      //use map to get relative acc
+      //use map to get relative acc base on hold duration
       FarmerAcc.y=map(holdTimer,0,holdMaxTime,-5,maxAcc);
+      //turns out map does not constrain acc like I thought it would
+      //adding actual constrain to acc fixed the problem!
+      FarmerAcc.y=constrain(FarmerAcc.y, maxAcc, -5);
     }
   }
       

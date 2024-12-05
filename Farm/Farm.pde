@@ -42,7 +42,7 @@ void keyPressed(){
     dir=1;
     isWalking=true;
   }else if (key == ' '){
-    if(Landed && !isHolding){
+    if(!isHolding){
       isHolding=true;//start to record
       isJumping=true;//start jumping anim
       holdStart=millis();//record time
@@ -52,10 +52,11 @@ void keyPressed(){
 
 void keyReleased(){
   if (key==' '){
+    //stop holding if space bar is being hold
     if (isHolding){
      isHolding=false;
-     farmer.Jump();
-     holdTimer=0;
+     farmer.Jump();//jump
+     holdTimer=0;//reset holdtime when released
      isJumping=false;
     }
   }else if (key=='a'){
