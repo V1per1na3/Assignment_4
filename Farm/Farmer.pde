@@ -11,6 +11,12 @@ class Farmer{
   int farmerWalkFrame;
   float farmerspeed;
   float maxAcc;
+  float w=72;//the size of character image
+  float h=48;
+  float left;//hitbox value
+  float right;
+  float top;
+  float bottom;
   
   Farmer(){
     maxAcc=-12;//max acc
@@ -64,11 +70,16 @@ class Farmer{
       FarmerVelo.add(Farmergrav);//add gravity if player is in the air *going down
     }
     FarmerLoc.add(FarmerVelo);//update location by adding velo back to position
-    //check if farmer is landed, stop the downward force
+    //calculate hitbox here bc farmer will be moving around 
+    left=FarmerLoc.x-w/2;
+    right=FarmerLoc.x+w/2;
+    top=FarmerLoc.y-h/2;
+    bottom=FarmerLoc.y+h/2;
+    //check if farmer is landed, if so stop the downward force
     if(FarmerLoc.y >=height-50){
       Landed=true;
-      FarmerLoc.y= height-50;
-      FarmerVelo.y=0;
+      FarmerLoc.y= height-50;//fall back to where we begin
+      FarmerVelo.y=0;//stop downward force
     }
     if(goLeft){
       FarmerLoc.x -=farmerspeed;//going left

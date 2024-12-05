@@ -21,7 +21,7 @@ void setup(){
   goUp=false;
   goLeft=false;
   goRight=false;
-  holdStart=0;
+  holdStart=0;//start time
   holdTimer=0;//store hold space time
   holdMaxTime=2000;//max time to hold space bar in ms
   //initialize platform1
@@ -37,9 +37,11 @@ void draw(){
   farmer.movement();
   farmer.checkEdges();
   for (int i=0;i< platform1.length; i++){
-    platform1[i].display();
+    platform1[i].display();//show platform
+    platform1[i].collision(farmer);//collision with farmer
   } 
-  println(farmer.FarmerLoc.y);
+  //println(farmer.FarmerLoc.y);//debug purposes
+  //println(farmer.left);
 }
 
 void keyPressed(){
