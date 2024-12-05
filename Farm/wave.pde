@@ -12,7 +12,7 @@ class Wave{
   void display(){
     //draw wave
     noStroke();
-    fill(#86bfbe);
+    fill(#86bfbe,100);
     beginShape();
     //loop to generate vertices along x-axis
     for (float x=0; x<=width; x+=20){
@@ -28,7 +28,16 @@ class Wave{
   void movement(){
     //wave raises along y-axis
     Wavey -= Wavespeed;
+    println(Wavey);
   }
+  
+  void collision(Farmer farmer){
+    if (Wavey<farmer.top ){
+    Lose=true;
+    }
+    //println(farmer.top);//debug
+  }
+  
 }
   
     

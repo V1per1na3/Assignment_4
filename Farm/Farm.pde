@@ -10,6 +10,7 @@ boolean goLeft;
 boolean goRight;
 boolean Landed;
 boolean isHolding;
+boolean Lose;
 float holdStart;
 float holdTimer;
 float holdMaxTime;
@@ -19,6 +20,7 @@ void setup(){
   size(400,550);
   imageMode(CENTER);
   rectMode(CENTER);
+  Lose=false;
   isHolding=false;
   wave= new Wave();
   farmer= new Farmer();
@@ -65,8 +67,10 @@ void draw(){
   //put in the end so wave covers everything 
   wave.display();
   wave.movement();
+  wave.collision(farmer);
   //println(farmer.FarmerLoc.y);//debug purposes
   //println(farmer.left);
+  println(Lose);
 }
 
 void keyPressed(){
