@@ -10,19 +10,15 @@ class Farmer{
   int farmerStandFrame;
   int farmerWalkFrame;
   float farmerspeed;
-  float holdTimer;
-  float holdMaxTime;
   float maxAcc;
   
   Farmer(){
-    holdTimer=0;//store hold space time
-    holdMaxTime=3000;//max time to hold space bar in ms
     maxAcc=-20;//max acc
     farmerspeed =1.5;//moving speed
     FarmerLoc = new PVector (width/2, height/2);//initial location
     FarmerVelo= new PVector (0,0);
     Farmergrav = new PVector (0,0.5);//downward force in y axis
-    FarmerAcc= new PVector (0,0);//upward force in y axis
+    FarmerAcc= new PVector (0,-5);//upward force in y axis
     farmerJump= new PImage[3];
     //loop through the jumping poses
     for (int i=0; i<farmerJump.length; i++){
@@ -62,39 +58,40 @@ class Farmer{
     }
     popMatrix();
   }
-  void ADmovement(){
-    if(goLeft){
-      FarmerLoc.x -=farmerspeed;
-    }
-    if(goRight){
-      FarmerLoc.x +=farmerspeed;
-    }
-  }
   
-  void Jump(){
-    if(isHolding){
-      holdTimer=millis();
-      FarmerAcc.y=map(holdTimer,0,holdMaxTime,0,maxAcc);
-      if(holdTimer>holdMaxTime){
-        holdTimer=holdMaxTime;
-      }
-    }
-    if(!isHolding){
-      holdTimer=0;
-    }
+  void movement(){ 
     if(!Landed){
       FarmerVelo.add(Farmergrav);//add gravity if player is in the air *going down
     }
-    if(goUp && Landed){
-      FarmerVelo.add(FarmerAcc);//add acc if player is jumping *going up
-      Landed=false;
-      FarmerAcc.y=0;
-    }
-    FarmerLoc.add(FarmerVelo);//update position
+    FarmerLoc.add(FarmerVelo);//update location by adding velo back to position
+    //check if farmer is landed, stop the downward force
     if(FarmerLoc.y >=height/2){
       Landed=true;
       FarmerLoc.y= height/2;
       FarmerVelo.y=0;
+    }
+    if(goLeft){
+      FarmerLoc.x -=farmerspeed;//going left
+    }
+    if(goRight){
+      FarmerLoc.x +=farmerspeed;//going right
+    }
+  }
+  
+  void Timer(){
+    if(isHolding){
+      //calculate holding duration by - holdtime to current time
+      holdTimer=millis()-holdStart;
+      //use map to get relative acc
+      FarmerAcc.y=map(holdTimer,0,holdMaxTime,-5,maxAcc);
+    }
+  }
+      
+  void Jump(){
+    if(Landed){
+      FarmerVelo.add(FarmerAcc);//add acc if player is trying to jumping *going up
+      Landed=false;
+      FarmerAcc.y=0;//reset acc after jump
     }
   }
   
