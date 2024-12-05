@@ -1,5 +1,5 @@
-class Platform1{
-  PVector Platform1Loc;
+class Platform2{
+  PVector Platform2Loc;
   //variable for calculate hitbox
   float w;
   float h;  
@@ -8,20 +8,20 @@ class Platform1{
   float top;
   float bottom;
   
-  Platform1(){
-    Platform1Loc= new PVector (random(50,350),random(380,450));
-    w=110;
+  Platform2(){
+    Platform2Loc= new PVector (random(100,300),random(210,320));
+    w=80;
     h=20;
     //calculate the hitbox 
-    left=Platform1Loc.x-w/2;
-    right=Platform1Loc.x+w/2;
-    top=Platform1Loc.y-h/2;
-    bottom=Platform1Loc.y+h/2;
+    left=Platform2Loc.x-w/2;
+    right=Platform2Loc.x+w/2;
+    top=Platform2Loc.y-h/2;
+    bottom=Platform2Loc.y+h/2;
   }
   
   void display(){
-    fill(100);
-    rect(Platform1Loc.x,Platform1Loc.y, w,h);
+    fill(200);
+    rect(Platform2Loc.x,Platform2Loc.y, w,h);
   }
   
   void collision(Farmer farmer){
@@ -37,16 +37,12 @@ class Platform1{
         farmer.FarmerLoc.y =bottom + farmer.h/2;//top of farmer = bottom of platform
         farmer.FarmerVelo.y=0;//stop upward
         //if right & collide
-      }else if (farmer.right>left && farmer.FarmerLoc.x< Platform1Loc.x){
+      }else if (farmer.right>left && farmer.FarmerLoc.x< Platform2Loc.x){
         farmer.FarmerLoc.x= left-farmer.w/2;//right of farmer = left of platform
         //if left && collide
-      }else if (farmer.left < right && farmer.FarmerLoc.x > Platform1Loc.x){
+      }else if (farmer.left < right && farmer.FarmerLoc.x > Platform2Loc.x){
         farmer.FarmerLoc.x= right +farmer.w/2;//left of farmer = right of platform
       }
     }
   }
 }
-  
-  
-    
-  

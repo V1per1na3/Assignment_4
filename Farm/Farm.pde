@@ -1,5 +1,6 @@
 Farmer farmer;
 Platform1[] platform1= new Platform1[2];
+Platform2[] platform2= new Platform2[2];
 boolean isWalking;
 boolean isJumping;
 boolean goUp;
@@ -27,19 +28,28 @@ void setup(){
   //initialize platform1
   for (int i=0;i< platform1.length; i++){
     platform1[i] = new Platform1();
-  }    
+  }   
+  //initialize platform2
+  for (int i=0;i< platform2.length; i++){
+    platform2[i] = new Platform2();
+  } 
 }
 
 void draw(){
   background(255);
-  Landed=false;
+  Landed=false;//always apply gravity each frame & only not apply when landed is true
   farmer.display();
   farmer.Timer();
   farmer.movement();
   farmer.checkEdges();
+  //call function for platforms
   for (int i=0;i< platform1.length; i++){
     platform1[i].display();//show platform
     platform1[i].collision(farmer);//collision with farmer
+  } 
+  for (int i=0;i< platform2.length; i++){
+    platform2[i].display();//show platform
+    platform2[i].collision(farmer);//collision with farmer
   } 
   //println(farmer.FarmerLoc.y);//debug purposes
   //println(farmer.left);
