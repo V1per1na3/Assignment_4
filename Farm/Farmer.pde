@@ -19,7 +19,7 @@ class Farmer{
   float bottom;
   
   Farmer(){
-    maxAcc=-12;//max acc
+    maxAcc=-15;//max acc
     farmerspeed =1.5;//moving speed
     FarmerLoc = new PVector (width/2, height-50);//initial location
     FarmerVelo= new PVector (0,0);

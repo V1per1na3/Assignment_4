@@ -12,7 +12,7 @@ class Coin{
     }
   }
     
-    void display(){
+  void display(){
     pushMatrix();
     translate(CoinLoc.x,CoinLoc.y);
     if (frameCount%10 ==0){
@@ -21,4 +21,10 @@ class Coin{
     image(Coins[coinFrame],0,0);
     popMatrix();   
   }
+  
+  void collision(Farmer farmer){
+    if ( abs(farmer.FarmerLoc. x-CoinLoc.x)< farmer.w/2+10 && abs(farmer.FarmerLoc.y-CoinLoc.y)< farmer.h/2){
+      Collect=true;
+    }
+  }    
 }

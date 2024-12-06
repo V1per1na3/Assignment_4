@@ -12,6 +12,7 @@ boolean goRight;
 boolean Landed;
 boolean isHolding;
 boolean Lose;
+boolean Collect;
 float holdStart;
 float holdTimer;
 float holdMaxTime;
@@ -21,6 +22,7 @@ void setup(){
   size(400,550);
   imageMode(CENTER);
   rectMode(CENTER);
+  Collect=false;
   Lose=false;
   isHolding=false;
   coin= new Coin();
@@ -67,13 +69,14 @@ void draw(){
     platform3[i].collision(farmer);//collision with farmer
   }
   coin.display();
+  coin.collision(farmer);
   //put in the end so wave covers everything 
   wave.display();
   wave.movement();
   wave.collision(farmer);
   //println(farmer.FarmerLoc.y);//debug purposes
   //println(farmer.left);
-  println(Lose);
+  //println(Collect);
 }
 
 void keyPressed(){

@@ -28,7 +28,7 @@ class Wave{
   void movement(){
     //wave raises along y-axis
     Wavey -= Wavespeed;
-    println(Wavey);
+    //println(Wavey);
   }
   
   void collision(Farmer farmer){
