@@ -1,5 +1,6 @@
 Farmer farmer;
 Wave wave;
+Coin coin;
 Platform1[] platform1= new Platform1[2];
 Platform2[] platform2= new Platform2[3];
 Platform3[] platform3= new Platform3[2];
@@ -22,6 +23,7 @@ void setup(){
   rectMode(CENTER);
   Lose=false;
   isHolding=false;
+  coin= new Coin();
   wave= new Wave();
   farmer= new Farmer();
   goUp=false;
@@ -64,6 +66,7 @@ void draw(){
     platform3[i].display();//show platform
     platform3[i].collision(farmer);//collision with farmer
   }
+  coin.display();
   //put in the end so wave covers everything 
   wave.display();
   wave.movement();
