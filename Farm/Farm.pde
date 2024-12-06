@@ -1,3 +1,6 @@
+//Press A & D to move horizontally
+//Press space bar to jump, longer you hold = higher you jump
+//don't drown and collect the coin!
 Farmer farmer;
 Wave wave;
 Coin coin;
@@ -13,72 +16,68 @@ boolean Landed;
 boolean isHolding;
 boolean Lose;
 boolean Collect;
+boolean gamestart;
 float holdStart;
 float holdTimer;
 float holdMaxTime;
 int dir =1;
+float buttonX;
+float buttonY;
+float buttonWidth;
 
 void setup(){
   size(400,550);
   imageMode(CENTER);
   rectMode(CENTER);
-  Collect=false;
-  Lose=false;
-  isHolding=false;
-  coin= new Coin();
-  wave= new Wave();
-  farmer= new Farmer();
-  goUp=false;
-  goLeft=false;
-  goRight=false;
-  holdStart=0;//start time
-  holdTimer=0;//store hold space time
-  holdMaxTime=2000;//max time to hold space bar in ms
-  //initialize platform1
-  for (int i=0;i< platform1.length; i++){
-    platform1[i] = new Platform1();
-  }   
-  //initialize platform2
-  for (int i=0;i< platform2.length; i++){
-    platform2[i] = new Platform2();
-  }
-  //initialize platform3
-  for (int i=0;i< platform3.length; i++){
-    platform3[i] = new Platform3();
-  } 
+  reset();//reset variables
 }
 
 void draw(){
   background(255);
-  Landed=false;//always apply gravity each frame & only not apply when landed is true
-  farmer.display();
-  farmer.Timer();
-  farmer.movement();
-  farmer.checkEdges();
-  //call function for platforms
-  for (int i=0;i< platform1.length; i++){
-    platform1[i].display();//show platform
-    platform1[i].collision(farmer);//collision with farmer
-  } 
-  for (int i=0;i< platform2.length; i++){
-    platform2[i].display();//show platform
-    platform2[i].collision(farmer);//collision with farmer
-  } 
-  for (int i=0;i< platform3.length; i++){
-    platform3[i].display();//show platform
-    platform3[i].collision(farmer);//collision with farmer
+  if (gamestart){
+    Landed=false;//always apply gravity each frame & only not apply when landed is true
+    farmer.display();
+    farmer.Timer();
+    farmer.movement();
+    farmer.checkEdges();
+    //call function for platforms
+    for (int i=0;i< platform1.length; i++){
+      platform1[i].display();//show platform
+      platform1[i].collision(farmer);//collision with farmer
+    } 
+    for (int i=0;i< platform2.length; i++){
+      platform2[i].display();//show platform
+      platform2[i].collision(farmer);//collision with farmer
+    } 
+    for (int i=0;i< platform3.length; i++){
+      platform3[i].display();//show platform
+      platform3[i].collision(farmer);//collision with farmer
+    }
+    coin.display();
+    coin.collision(farmer);
+    //put in the end so wave covers everything 
+    wave.display();
+    wave.movement();
+    wave.collision(farmer);
+    //println(farmer.FarmerLoc.y);//debug purposes
+    //println(farmer.left);
+    //println(Collect);
+    if (Collect){
+      fill(0);
+      rect(height/2, width/2, 300,300);
+    }else if (Lose){
+      fill(0,255,0);
+      rect(height/2, width/2, 300,300);
+    }
   }
-  coin.display();
-  coin.collision(farmer);
-  //put in the end so wave covers everything 
-  wave.display();
-  wave.movement();
-  wave.collision(farmer);
-  //println(farmer.FarmerLoc.y);//debug purposes
-  //println(farmer.left);
-  //println(Collect);
 }
-
+void mousePressed(){
+  //reset game when clicked button
+  if (mouseX > buttonX && mouseX < buttonX + buttonWidth && mouseY > buttonY && mouseY < buttonY + 60){
+    reset();
+    gamestart=true;
+  }
+}
 void keyPressed(){
   if (key=='a'){
     goLeft=true;
