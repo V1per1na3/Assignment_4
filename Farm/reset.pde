@@ -9,9 +9,12 @@ void reset(){
   goLeft=false;
   goRight=false;
   gamestart=false;
+  win=loadImage("win.png");
+  loss=loadImage("loss.png");
+  begin=loadImage("begin.png");
   buttonX= width/2;//button x position
-  buttonY= height/2+50;//button y position
-  buttonWidth=100;//button width
+  buttonY= height/2;//button y position
+  buttonWidth=50;//button width
   holdStart=0;//start time
   holdTimer=0;//store hold space time
   holdMaxTime=2000;//max time to hold space bar in ms

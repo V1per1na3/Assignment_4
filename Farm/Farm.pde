@@ -1,12 +1,16 @@
 //Press A & D to move horizontally
 //Press space bar to jump, longer you hold = higher you jump
 //don't drown and collect the coin!
+PImage loss;
+PImage win;
+PImage begin;
 Farmer farmer;
 Wave wave;
 Coin coin;
 Platform1[] platform1= new Platform1[3];
 Platform2[] platform2= new Platform2[4];
 Platform3[] platform3= new Platform3[3];
+PImage bground;
 boolean isWalking;
 boolean isJumping;
 boolean goUp;
@@ -33,8 +37,11 @@ void setup(){
 }
 
 void draw(){
-  background(255);
-  if (gamestart){
+  background(#f2e6cb);
+  if (!gamestart){
+    image(begin,200,275,400,550);
+  }else{
+    bg();
     Landed=false;//always apply gravity each frame & only not apply when landed is true
     farmer.display();
     farmer.Timer();
@@ -63,17 +70,15 @@ void draw(){
     //println(farmer.left);
     //println(Collect);
     if (Collect){
-      fill(0);
-      rect(buttonX, buttonY, 150,60);
+      image(win,200,275,400,550);
     }else if (Lose){
-      fill(0,255,0);
-      rect(buttonX, buttonY, 150,60);
+      image(loss,200,275,400,550);
     }
   }
 }
 void mousePressed(){
   //reset game when clicked button
-  if (mouseX > buttonX && mouseX < buttonX + buttonWidth && mouseY > buttonY && mouseY < buttonY + 60){
+  if (mouseX > buttonX-75 && mouseX < buttonX + buttonWidth && mouseY > buttonY+20 && mouseY < buttonY + 80){
     reset();
     gamestart=true;
   }
