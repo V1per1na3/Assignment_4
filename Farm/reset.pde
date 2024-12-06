@@ -9,8 +9,8 @@ void reset(){
   goLeft=false;
   goRight=false;
   gamestart=false;
-  buttonX= width/2-50;//button x position
-  buttonY= height/2;//button y position
+  buttonX= width/2;//button x position
+  buttonY= height/2+50;//button y position
   buttonWidth=100;//button width
   holdStart=0;//start time
   holdTimer=0;//store hold space time

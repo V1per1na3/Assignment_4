@@ -5,7 +5,7 @@ class Wave{
   
   Wave(){
     Wavey=height;//initial y position
-    Wavespeed=0.3;
+    Wavespeed=0.25;
     perlinT=0;
   }
   
@@ -28,7 +28,7 @@ class Wave{
   void movement(){
     //wave raises along y-axis
     Wavey -= Wavespeed;
-    //println(Wavey);
+    println(Wavey);
   }
   
   void collision(Farmer farmer){

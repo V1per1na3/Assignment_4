@@ -4,9 +4,9 @@
 Farmer farmer;
 Wave wave;
 Coin coin;
-Platform1[] platform1= new Platform1[2];
-Platform2[] platform2= new Platform2[3];
-Platform3[] platform3= new Platform3[2];
+Platform1[] platform1= new Platform1[3];
+Platform2[] platform2= new Platform2[4];
+Platform3[] platform3= new Platform3[3];
 boolean isWalking;
 boolean isJumping;
 boolean goUp;
@@ -64,10 +64,10 @@ void draw(){
     //println(Collect);
     if (Collect){
       fill(0);
-      rect(height/2, width/2, 300,300);
+      rect(buttonX, buttonY, 150,60);
     }else if (Lose){
       fill(0,255,0);
-      rect(height/2, width/2, 300,300);
+      rect(buttonX, buttonY, 150,60);
     }
   }
 }

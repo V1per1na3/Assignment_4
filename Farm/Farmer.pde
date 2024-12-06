@@ -19,8 +19,8 @@ class Farmer{
   float bottom;
   
   Farmer(){
-    maxAcc=-15;//max acc
-    farmerspeed =1.5;//moving speed
+    maxAcc=-13;//max acc
+    farmerspeed =2;//moving speed
     FarmerLoc = new PVector (width/2, height-50);//initial location
     FarmerVelo= new PVector (0,0);
     Farmergrav = new PVector (0,0.5);//downward force in y axis

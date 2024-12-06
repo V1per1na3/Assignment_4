@@ -9,9 +9,9 @@ class Platform3{
   float bottom;
   
   Platform3(){
-    Platform3Loc= new PVector (random(120,280),random(100,200));
-    w=50;
-    h=20;
+    Platform3Loc= new PVector (random(100,380),random(100,200));
+    w=40;
+    h=10;
     //calculate the hitbox 
     left=Platform3Loc.x-w/2;
     right=Platform3Loc.x+w/2;
@@ -21,7 +21,7 @@ class Platform3{
   
   void display(){
     fill(240);
-    rect(Platform3Loc.x,Platform3Loc.y, w,h);
+    rect(Platform3Loc.x,Platform3Loc.y, w,h,5);
   }
   
   void collision(Farmer farmer){
